@@ -11,13 +11,17 @@ import {
 
 export function Signin() {
 
-  const { signIn, isLoggin } = useAuth();
+  const { signIn, isLoggin, forgotPassword } = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSignIn(){
     signIn(email, password);
-    console.log('clicou');
+  };
+
+  function handleForgotPawword(){
+    forgotPassword(email);
   };
 
   return (
@@ -42,7 +46,7 @@ export function Signin() {
               onChangeText={setPassword}
           />
 
-          <ForgotPasswordButton>
+          <ForgotPasswordButton onPress={handleForgotPawword}>
             <ForgotPasswordLabel>Esqueci minha senha</ForgotPasswordLabel>
           </ForgotPasswordButton>
 

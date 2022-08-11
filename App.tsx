@@ -14,6 +14,7 @@ import { AuthProvider } from "./src/hooks/auth";
 //importando telas
 import { Signin } from './src/screens/Signin';
 import React from 'react';
+import { Product } from './src/screens/Product';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -32,7 +33,7 @@ export default function App() {
       <ThemeProvider theme={Theme } >
         <StatusBar style='light' translucent backgroundColor='transparent' />
         <AuthProvider>
-          <Signin />
+          <Product />
         </AuthProvider> 
       </ThemeProvider>
     </GestureHandlerRootView>
