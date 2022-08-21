@@ -21,7 +21,7 @@ export function Search({onSearch, onClear, ...rest}: Props) {
         <InputArea>
             <Input placeholder='pesquisar...' {...rest} />
 
-            <ButtonClear>
+            <ButtonClear onPress={onClear} >
                 <Feather name='x' size={16} color='black' />
             </ButtonClear>
         </InputArea>

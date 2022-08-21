@@ -1,3 +1,4 @@
+import React from 'react';
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SplashScreen from 'expo-splash-screen';
@@ -13,9 +14,10 @@ import { AuthProvider } from "./src/hooks/auth";
 
 //importando telas
 import { Signin } from './src/screens/Signin';
-import React from 'react';
-import { Product } from './src/screens/Product';
-import { Home } from './src/screens/Home';
+
+
+
+import { Routes } from './src/routes';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -34,7 +36,7 @@ export default function App() {
       <ThemeProvider theme={Theme } >
         <StatusBar style='light' translucent backgroundColor='transparent' />
         <AuthProvider>
-          <Home />
+          <Routes />
         </AuthProvider> 
       </ThemeProvider>
     </GestureHandlerRootView>
