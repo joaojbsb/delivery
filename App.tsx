@@ -15,6 +15,8 @@ import { AuthProvider } from "./src/hooks/auth";
 //importando telas
 import { Signin } from './src/screens/Signin';
 
+import { Home } from './src/screens/Home';
+
 
 
 import { Routes } from './src/routes';
