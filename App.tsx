@@ -20,6 +20,7 @@ import { Home } from './src/screens/Home';
 
 
 import { Routes } from './src/routes';
+import { Orders } from './src/screens/Orders';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
