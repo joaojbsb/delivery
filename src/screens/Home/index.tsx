@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import happyEmoji from '../../assets/happy.png';
+import { useAuth } from '../../hooks/auth';
 import { Search } from '../../components/Search';
 import { Alert, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation,useFocusEffect } from '@react-navigation/native';
@@ -18,7 +19,9 @@ export function Home() {
 
   const [ pizzas, setPizzas ] = useState<ProductProps[]>([]);
   const [search, setSearch] = useState('');
+
   const navigation = useNavigation();
+  const { signOut, user } = useAuth();
   
   //função para buscar as pizzas cadastradas
   function fetchPizzas(value: string){
@@ -53,7 +56,8 @@ export function Home() {
   };
 
   function handleOpen(id: string) {
-    navigation.navigate('product', {id});
+    const route = user?.isAdmin ? 'product' : 'order';
+    navigation.navigate(route, {id});
   };
 
   function handleAdd() {
@@ -72,12 +76,12 @@ export function Home() {
                 <GreetingEmoji source={happyEmoji} />
 
                 <GreetingText>
-                    Olá, Admin
+                    { user?.isAdmin ? `Olá, ${user.name}` : `Olá, ${user?.name}`}
                 </GreetingText>
             </Greeting>
 
             <TouchableOpacity>
-                <MaterialIcons name="logout" color={ COLORS.TITLE} size={24} />
+                <MaterialIcons name="logout" color={ COLORS.TITLE} size={24} onPress={signOut} />
             </TouchableOpacity>
         </Header>
 
@@ -109,11 +113,14 @@ export function Home() {
           }}
         />
 
-        <NewProductButton 
-          title='Cadastrar Pizza'
-          type="secondary"
-          onPress={handleAdd}
-        />
+          {
+            user?.isAdmin &&
+           <NewProductButton 
+              title='Cadastrar Pizza'
+              type="secondary"
+              onPress={handleAdd}
+            />
+          }
 
     </Container>
   );
